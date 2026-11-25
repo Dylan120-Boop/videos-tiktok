@@ -104,7 +104,7 @@ nav a{text-decoration:none;opacity:.85}nav a:hover{opacity:1;text-decoration:und
 .offer b{display:block;font:400 clamp(30px,3.4vw,40px)/1.05 Anton,sans-serif;white-space:nowrap}
 .offer small{color:var(--mute);font-size:14px}
 /* feria */
-.feria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.feria{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
 .feria article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
 .feria .city{font-size:13px;font-weight:600;color:var(--red)}
 .feria h3{font-size:28px;margin:4px 0 8px}
@@ -193,6 +193,7 @@ footer b{color:#fff}
 @media(max-width:600px){.ot thead{display:none}.ot tr{display:grid;padding:10px 6px;border-bottom:1px solid var(--line)}.ot td{display:flex;justify-content:space-between;gap:12px;border:0;padding:5px 8px}.ot td::before{content:attr(data-l);color:var(--mute);font-weight:500}}
 @media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .wrap{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){nav{display:none}.bagbtn{margin-left:auto}.fardo,.comment,.ship,.modal{grid-template-columns:minmax(0,1fr)}.feria{grid-template-columns:minmax(0,1fr)}}
+@media(min-width:761px) and (max-width:1100px){.feria{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.hero{min-height:0;align-items:stretch;grid-template-rows:56vw auto}.hero>img{position:relative;grid-row:1;opacity:1}.hero::after{display:none}.hero .band{grid-row:2}.steps{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card .inf{padding:10px 10px 12px}.card h3{font-size:14px}.price{font-size:20px}.stamp{font-size:20px}.offer{grid-template-columns:minmax(0,1fr)}.offer b{font-size:28px;white-space:normal}}
 </style>
 
@@ -211,13 +212,13 @@ footer b{color:#fff}
     <div>
       <span class="sticker">New drop 22/11 · Polo Ralph Lauren</span>
       <h1>Ropa vintage<br>sin vueltas</h1>
-      <p>Ropa americana que seleccionamos prenda por prenda en las ferias de Bolivia. Sale en drops todos los domingos: venta minorista en Santa Cruz, envíos a toda Bolivia y envíos internacionales.</p>
+      <p>Ropa americana que seleccionamos prenda por prenda en las ferias de Bolivia. Sale en drops todos los domingos: venta minorista en Santa Cruz y envíos seguros a toda Bolivia y países vecinos.</p>
       <div class="cta"><a class="btn red" href="#como">Comenta “Grupo” y entra</a><a class="btn ghost" href="#drop">Ver el drop</a></div>
     </div>
     <div class="clock" aria-live="polite">
       <small>Próximo drop · <span id="dropDate">domingo 20:00 (hora Bolivia)</span></small>
       <div class="t"><div><b id="cd-d">0</b><i>días</i></div><div><b id="cd-h">00</b><i>horas</i></div><div><b id="cd-m">00</b><i>min</i></div><div><b id="cd-s">00</b><i>seg</i></div></div>
-      <div class="stats"><span><b>19,3 mil</b> me gusta</span><span><b>1.193</b> seguidores</span><span><b>Envíos</b> internacionales</span></div>
+      <div class="stats"><span><b>+1.000</b> prendas vendidas</span><span><b>19,3 mil</b> me gusta</span><span><b>BO · AR · PE · CL · PY</b></span></div>
     </div>
   </div></div>
 </section>
@@ -237,7 +238,7 @@ footer b{color:#fff}
   <div class="head"><div><h2>Cómo funciona un drop</h2><p style="color:#c9c7c2">El mismo sistema que ya usan en TikTok, ahora con su propia página.</p></div></div>
   <div class="steps">
     <div class="step"><div class="n">1</div><h3>Comenta “Grupo”</h3><p>En cualquier video de @archive.sc. Te mandamos el acceso al grupo privado por mensaje.</p></div>
-    <div class="step"><div class="n">2</div><h3>Domingo, drop</h3><p>Las fotos salen primero en el grupo y en esta página, con talla, medidas y precio.</p></div>
+    <div class="step"><div class="n">2</div><h3>Domingo, drop</h3><p>Los adelantos salen en las historias de Instagram. Luego el drop completo en el grupo y en esta página, con talla y precio.</p></div>
     <div class="step"><div class="n">3</div><h3>El primero se lo lleva</h3><p>Reservas la prenda aquí o por mensaje. Te la guardamos 24 horas.</p></div>
     <div class="step"><div class="n">4</div><h3>Pagas y te llega</h3><p>QR o transferencia en Bolivia, transferencia en Argentina. Enviamos con código de seguimiento.</p></div>
   </div>
@@ -253,13 +254,13 @@ footer b{color:#fff}
 <section class="band" id="fardos"><div class="wrap fardo">
   <div class="pic"><img src="img/brooks-polos.webp" data-i="brooks-polos" alt="Nueve polos Brooks Brothers en distintos colores"></div>
   <div>
-    <span class="sticker">Mayorista · Bolivia y el mundo</span>
+    <span class="sticker">Mayorista · Bolivia y países vecinos</span>
     <h2>¿Quieres empezar en el negocio de la ropa vintage?</h2>
-    <p style="color:var(--mute);margin:14px 0 0">Minifardos de polos americanos ya seleccionados: marcas buenas, sin manchas, listos para revender. Ideal para arrancar tu propia tienda, en Bolivia o en otro país: hacemos envíos internacionales.</p>
+    <p style="color:var(--mute);margin:14px 0 0">Minifardos de polos americanos ya seleccionados: marcas buenas, sin manchas, listos para revender. Ideal para arrancar tu propia tienda, en Bolivia o en otro país: enviamos a Argentina, Perú, Chile y Paraguay.</p>
     <div class="offer">
       <div><small>Bolivia</small><b>12 prendas · 330 Bs</b><small>Envíos a todo el país</small></div>
       <div><small>Argentina</small><b>12 prendas · $60.000</b><small>Envíos a todo el país</small></div>
-      <div><small>Otros países</small><b>Fardos por mayor</b><small>Cotiza tu envío internacional por mensaje</small></div>
+      <div><small>Perú · Chile · Paraguay</small><b>Fardos por mayor</b><small>Cotiza tu envío por mensaje</small></div>
     </div>
     <a class="btn red" href="https://www.instagram.com/archive.sc0/">Pedir mi minifardo</a>
   </div>
@@ -269,18 +270,19 @@ footer b{color:#fff}
   <div class="head"><div><h2>De la feria a tu puerta</h2><p>Recorremos las ferias grandes para que tú no tengas que hacerlo.</p></div></div>
   <div class="feria">
     <article><div class="city">El Alto</div><h3>Feria 16 de Julio</h3><p>Jueves y domingos entre miles de puestos, buscando jeans, chaquetas y marcas de los 90 y 2000.</p></article>
-    <article><div class="city">Oruro</div><h3>Feria Kantuta</h3><p>Fardos recién abiertos, de donde salen muchos de los polos y camisas.</p></article>
+    <article><div class="city">Oruro</div><h3>Feria Kantuta</h3><p>La feria de zapatos más grande de Sudamérica, y fardos recién abiertos de donde salen muchos polos y camisas.</p></article>
     <article><div class="city">Santa Cruz</div><h3>Nuestra base</h3><p>Aquí lavamos, revisamos, medimos y fotografiamos cada prenda antes del drop.</p></article>
+    <article><div class="city">Casa Carmencita · Santa Cruz</div><h3>Atomik Fair 8</h3><p>Estuvimos como emprendimiento confirmado el 24 y 25 de octubre, calle Chuquisaca 60.</p></article>
   </div>
   <div class="ship">
     <div><h3>Santa Cruz · minorista</h3><p>Compra prenda por prenda en los drops del domingo. Entrega en la ciudad o recojo coordinado.</p></div>
     <div><h3>Bolivia</h3><p>Envíos a los 9 departamentos. La Paz, Cochabamba y Oruro llegan en 1 a 3 días.</p></div>
-    <div><h3>Internacional · mayorista</h3><p>Fardos por mayor con envío a Argentina y otros países. Escríbenos y cotizamos el envío.</p></div>
+    <div><h3>Países vecinos · mayorista</h3><p>Envíos seguros a Argentina, Perú, Chile y Paraguay. Fardos por mayor: escríbenos y cotizamos el envío.</p></div>
   </div>
   <div style="margin-top:36px">
     <details><summary>¿La ropa es original?</summary><p>Sí. Es ropa americana de segunda mano. Mostramos la etiqueta de cada prenda en las fotos para que veas marca, talla y origen.</p></details>
     <details><summary>¿Cómo sé si me queda?</summary><p>Cada prenda trae talla de etiqueta y medidas tomadas en plano (ancho y largo). Si dudas, escríbenos y te mandamos más fotos.</p></details>
-    <details><summary>¿Envían a otros países?</summary><p>Sí. Para otros países trabajamos por mayor: fardos seleccionados con envío internacional. En Santa Cruz vendemos por menor, prenda por prenda.</p></details>
+    <details><summary>¿Envían a otros países?</summary><p>Sí. Enviamos a Argentina, Perú, Chile y Paraguay. Para esos países trabajamos por mayor: fardos seleccionados con envío seguro. En Santa Cruz vendemos por menor, prenda por prenda.</p></details>
     <details><summary>¿Hacen cambios?</summary><p>Como cada pieza es única no hacemos cambios por talla, pero si la prenda llega con un detalle que no mostramos, te devolvemos el dinero.</p></details>
     <details><summary>¿Cuánto tiempo me guardan una reserva?</summary><p>24 horas. Después, la prenda vuelve a quedar disponible para el siguiente en la lista.</p></details>
   </div>
@@ -305,12 +307,12 @@ footer b{color:#fff}
 </div></section>
 
 <section class="band close"><div class="wrap">
-  <h2>Drops todos<br>los domingos</h2>
-  <a class="btn" href="https://www.tiktok.com/@archive.sc">Comenta “Grupo” en TikTok</a>
+  <div><h2>Drops todos<br>los domingos</h2><p style="font-size:19px;margin:14px 0 0;max-width:30em">Para comprar una prenda, envíanos un mensaje. Más de 1.000 prendas vendidas y contando.</p></div>
+  <div class="cta"><a class="btn" href="https://ig.me/m/archive.sc0">Mensaje por Instagram</a><a class="btn" href="https://www.instagram.com/archive.sc0/">Grupo de WhatsApp</a><a class="btn" href="https://www.tiktok.com/@archive.sc">Comenta “Grupo” en TikTok</a></div>
 </div></section>
 
 <footer class="band" style="padding-block:28px"><div class="wrap">
-  <div><b>ARCHIVE SC · Tienda de Ropa</b><br>Santa Cruz, Bolivia. Minorista en Santa Cruz, mayorista con envíos internacionales.</div>
+  <div><b>ARCHIVE SC · Tienda de Ropa</b><br>Santa Cruz, Bolivia. Minorista en Santa Cruz. Envíos seguros a Bolivia, Argentina, Perú, Chile y Paraguay.</div>
   <div>TikTok <a href="https://www.tiktok.com/@archive.sc"><b>@archive.sc</b></a><br>Instagram <a href="https://www.instagram.com/archive.sc0/"><b>@archive.sc0</b></a></div>
 </div></footer>
 
@@ -364,7 +366,7 @@ async function setStatus(code,s){
 function newCode(){const d=new Date(),A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let c='';for(let i=0;i<3;i++)c+=A[Math.floor(Math.random()*A.length)];return `ASC-${String(d.getDate()).padStart(2,'0')}${String(d.getMonth()+1).padStart(2,'0')}-${c}`}
 
 /* ---------- grilla ---------- */
-$('#tk').textContent=Array(2).fill('POLO RALPH LAUREN ✦ ENVÍOS INTERNACIONALES ✦ BROOKS BROTHERS ✦ FUBU ✦ LEVI\'S 559 ✦ MAYORISTA Y MINORISTA ✦ CARHARTT ✦ NIKE ✦ ESSENTIALS ✦ ').join('').repeat(2);
+$('#tk').textContent=Array(2).fill('POLO RALPH LAUREN ✦ ENVÍOS INTERNACIONALES ✦ BROOKS BROTHERS ✦ FUBU ✦ LEVI\'S 559 ✦ MAYORISTA Y MINORISTA ✦ VETEMENTS ✦ ANTI SOCIAL SOCIAL CLUB ✦ BILLIONAIRE BOYS CLUB ✦ CARHARTT ✦ NIKE ✦ ESSENTIALS ✦ ').join('').repeat(2);
 const cats=['Todo',...new Set(P.map(p=>p.cat))];
 function chips(){$('#chips').innerHTML=cats.map(c=>`<button class="chip" type="button" aria-pressed="${c===cat}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}
 function grid(){
