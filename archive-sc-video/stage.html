@@ -8,7 +8,7 @@ html,body{margin:0;background:#000}
 #dim{position:absolute;inset:0;background:#000}
 #grain{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:overlay;opacity:.2;pointer-events:none;z-index:50}
 #flash{position:absolute;inset:0;z-index:60}
-.el{position:absolute;transform-origin:50% 50%;will-change:transform;white-space:nowrap}
+.el{position:absolute;transform-origin:50% 50%;white-space:nowrap}
 .L{font:400 150px/0.95 Anton,Impact,sans-serif;text-transform:uppercase;color:#fff;letter-spacing:.005em;text-shadow:7px 7px 0 #000}
 .L.dark{color:#0d0d0d;text-shadow:7px 7px 0 rgba(0,0,0,.18)}
 .L b{font-weight:400;background:#d7182a;color:#fff;padding:0 .12em;text-shadow:none;box-shadow:8px 8px 0 #000;display:inline-block;line-height:1.05}
@@ -16,12 +16,17 @@ html,body{margin:0;background:#000}
 .pill{font:700 46px Inter,sans-serif;color:#fff;background:#0d0d0d;padding:14px 26px;border-radius:999px;border:3px solid #fff}
 .pill.red{background:#d7182a;border-color:#d7182a}
 .pill.lite{background:#fff;color:#0d0d0d;border-color:#0d0d0d}
-.card{background:#fff;padding:14px 14px 14px;box-shadow:14px 14px 0 rgba(0,0,0,.45)}
+.card{background:#fff;padding:14px;box-shadow:14px 14px 0 rgba(0,0,0,.45)}
 .card img{display:block;width:100%}
 .stk{font:400 56px/1 Anton,sans-serif;text-transform:uppercase;background:#d7182a;color:#fff;padding:10px 16px;box-shadow:6px 6px 0 #000}
 .stk.w{background:#fff;color:#0d0d0d}
-.phone{width:520px;border-radius:46px;background:#0d0d0d;padding:16px;box-shadow:18px 18px 0 rgba(0,0,0,.55)}
+.phone{width:520px;border-radius:46px;background:#0d0d0d;padding:16px;box-shadow:18px 18px 0 rgba(0,0,0,.55);border:3px solid #333}
 .phone img{display:block;width:100%;border-radius:32px}
+.ipad{background:#111;border-radius:34px;padding:24px;box-shadow:18px 18px 0 rgba(0,0,0,.55);border:3px solid #333}
+.ipad img{display:block;width:100%;border-radius:12px}
+.lap .scr{background:#111;border-radius:22px 22px 0 0;padding:18px 18px 22px;border:3px solid #333;border-bottom:0}
+.lap .scr img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:6px}
+.lap .base{height:30px;background:linear-gradient(#cfcfcf,#8d8d8d);border-radius:0 0 26px 26px;margin:0 -40px;box-shadow:0 18px 0 rgba(0,0,0,.45)}
 .sw{width:420px;background:#fff;box-shadow:12px 12px 0 rgba(0,0,0,.35)}
 .sw .c{height:320px;border-bottom:2px solid #0d0d0d}
 .sw .t{padding:18px 22px 22px;white-space:normal}
@@ -36,83 +41,95 @@ const W=1080,MAXW=936,X0=72;
 const rnd=s=>{const x=Math.sin(s*12.9898+78.233)*43758.5453;return x-Math.floor(x)};
 const els=[];let uid=1;
 function add(html,o){const n=document.createElement('div');n.className='el '+(o.cls||'');n.innerHTML=html;stage.appendChild(n);const e={node:n,id:uid++,x:X0,y:0,rot:0,enter:'up',exit:'up',boil:5,boilR:.9,drift:0,align:'l',...o};els.push(e);n.style.zIndex=o.z||10;return e}
-// pila de líneas ordenadas: entran alternando desde abajo y desde arriba
 function stack(t0,t1,y,lines,o={}){let yy=y;lines.forEach((l,i)=>{const s=l.s||150;const e=add(l.t,{cls:'L '+(o.dark?'dark':''),t0:l.at??(t0+i*(o.gap??.38)),t1:l.t1??t1,y:yy,align:l.a||o.align||'l',enter:l.enter||(i%2?'down':'up'),exit:o.exit||(i%2?'down':'up'),drift:o.drift??10,fit:true});e.node.style.fontSize=s+'px';yy+=s*(l.lh||1.02)+(o.space??10)});return yy}
 const pill=(t0,t1,y,txt,cls='',o={})=>add(txt,{cls:'pill '+cls,t0,t1,y,align:'c',enter:'stamp',exit:'cut',drift:6,...o});
+// dispositivo con video: clip {dir,start,rate,max}
+const dev=(html,clip,o)=>{const e=add(html,{boil:3,boilR:.4,drift:6,...o});e.clip=clip;return e};
 
-/* ---------- escenas ---------- */
+/* ---------- escenas, sincronizadas con la voz ---------- */
 const scenes=[
- {t0:0,t1:3.6,bg:{clip:'a',start:186},dim:.5},
- {t0:3.6,t1:7.2,color:'#0d0d0d',flash:'#d7182a'},
- {t0:7.2,t1:12,color:'#161616',flash:'#fff'},
- {t0:12,t1:17.6,color:'#0d0d0d',flash:'#d7182a'},
- {t0:17.6,t1:23.8,color:'#e7e4df',flash:'#0d0d0d'},
- {t0:23.8,t1:29.6,color:'#0d0d0d',flash:'#d7182a'},
- {t0:29.6,t1:33.6,color:'#e7e4df',flash:'#0d0d0d'},
- {t0:33.6,t1:41,bg:{clip:'a',start:0},dim:.6,flash:'#d7182a'},
- {t0:41,t1:44.6,bg:{clip:'b',start:90},dim:.72,flash:'#fff'},
- {t0:44.6,t1:48.6,color:'#0d0d0d',flash:'#d7182a'}
+ {t0:0,t1:2.3,bg:{clip:'a',start:200},dim:.5},
+ {t0:2.3,t1:6.45,color:'#0d0d0d',flash:'#d7182a'},
+ {t0:6.45,t1:11.1,color:'#161616',flash:'#fff'},
+ {t0:11.1,t1:17.85,color:'#0d0d0d',flash:'#d7182a'},
+ {t0:17.85,t1:26.3,color:'#e7e4df',flash:'#0d0d0d'},
+ {t0:26.3,t1:34.05,color:'#0d0d0d',flash:'#d7182a'},
+ {t0:34.05,t1:42.05,color:'#e7e4df',flash:'#0d0d0d'},
+ {t0:42.05,t1:51.15,bg:{clip:'a',start:0},dim:.6,flash:'#d7182a'},
+ {t0:51.15,t1:61.35,color:'#141414',flash:'#fff'},
+ {t0:61.35,t1:63.85,bg:{clip:'b',start:110},dim:.72,flash:'#d7182a'},
+ {t0:63.85,t1:68.6,color:'#0d0d0d',flash:'#d7182a'}
 ];
-const END=48.6;
+const END=68.6;
 
 // 1 · gancho
-stack(.15,3.5,470,[{t:'¿Quieres',s:200},{t:'saber cómo',s:200},{t:'hicimos',s:200},{t:'<b>esta página?</b>',s:180}],{gap:.4});
-pill(2.2,3.5,1380,'spoiler: no fue una agencia');
+stack(0.05,2.25,470,[{t:'¿Quieres',s:200},{t:'saber cómo',s:200,at:.4},{t:'hicimos',s:200,at:.85},{t:'<b>esta página?</b>',s:180,at:1.25}],{});
 // 2 · el pelado
-stack(3.75,7.1,440,[{t:'Un pelado',s:210},{t:'de <b>16</b> años',s:250,lh:1.08},{t:'hace páginas',s:170},{t:'web.',s:170}],{gap:.45,space:18});
-pill(6.0,7.1,1440,'y no es broma');
+stack(2.45,6.4,440,[{t:'Un pelado',s:210},{t:'de <b>16</b> años',s:250,lh:1.08,at:3.25},{t:'hace páginas',s:170,at:4.0},{t:'web.',s:170,at:4.55}],{space:18});
+pill(5.42,6.4,1440,'y no es broma');
 // 3 · les hablamos nosotros
-stack(7.35,11.9,190,[{t:'Primero',s:130},{t:'les hablamos <b>nosotros</b>',s:110}],{gap:.35});
-const cm=add('<div class="card" style="width:880px"><img src="shots/comment.png"></div><div class="ring" style="left:150px;top:598px;width:720px;height:150px"></div>',{t0:8.2,t1:11.9,y:480,align:'c',rot:-2.5,enter:'drop',exit:'down',boil:3,boilR:.5,drift:8});
-cm.node.querySelector('.ring').dataset.from='9.4';
-add('<span class="stk">y dijeron que sí</span>',{t0:10.3,t1:11.9,y:1340,align:'c',rot:3,enter:'stamp',exit:'cut',z:20});
+stack(6.6,11.05,190,[{t:'Primero',s:130},{t:'les hablamos <b>nosotros</b>',s:110,at:7.0}],{});
+const cm=add('<div class="card" style="width:880px"><img src="shots/comment.png"></div><div class="ring" style="left:150px;top:598px;width:720px;height:150px"></div>',{t0:8.3,t1:11.05,y:480,align:'c',rot:-2.5,enter:'drop',exit:'down',boil:3,boilR:.5,drift:8,ringAt:10.2});
+add('<span class="stk">y dijeron que sí</span>',{t0:10.25,t1:11.05,y:1340,align:'c',rot:3,enter:'stamp',exit:'cut',z:20});
 // 4 · ya conocían el trabajo
-stack(12.15,14.1,640,[{t:'Ya habían visto',s:150},{t:'nuestro <b>trabajo</b>',s:150}],{gap:.4});
-stack(14.2,17.5,260,[{t:'Marcas como',s:120}],{});
-add('<span class="L"><i>SAVAGE</i></span>',{t0:14.55,t1:17.5,y:430,align:'c',rot:-4,enter:'left',drift:12,z:12}).node.firstChild.style.fontSize='210px';
-add('<span class="L"><i>SACRED</i></span>',{t0:14.9,t1:17.5,y:690,align:'c',rot:3,enter:'right',drift:12,z:12}).node.firstChild.style.fontSize='210px';
-stack(15.35,17.5,960,[{t:'ya se interesaron',s:120},{t:'<b>y Archive SC</b>',s:130,at:16.0},{t:'se quiso sumar',s:130,at:16.45}],{});
+stack(11.25,13.0,640,[{t:'Ya habían visto',s:150},{t:'nuestro <b>trabajo</b>',s:150,at:11.9}],{});
+stack(13.05,17.8,260,[{t:'Marcas como',s:120}],{});
+add('<span class="L"><i>SAVAGE</i></span>',{t0:13.75,t1:17.8,y:430,align:'c',rot:-4,enter:'left',drift:12,z:12}).node.firstChild.style.fontSize='210px';
+add('<span class="L"><i>SACRED</i></span>',{t0:14.35,t1:17.8,y:690,align:'c',rot:3,enter:'right',drift:12,z:12}).node.firstChild.style.fontSize='210px';
+stack(14.9,17.8,960,[{t:'ya se interesaron',s:120},{t:'<b>y Archive SC</b>',s:130,at:16.0},{t:'se quiso sumar',s:130,at:16.7}],{});
 // 5 · estudiamos la marca
-pill(17.75,23.7,150,'PASO 1','red',{enter:'stamp'});
-stack(17.9,23.7,250,[{t:'Estudiamos',s:150},{t:'la marca',s:150}],{dark:true,align:'c'});
-const ph=(src,x,y,r,t0,lab,lr)=>{add(`<div class="card" style="width:420px"><img src="shots/${src}"></div>`,{t0,t1:23.7,x,y,rot:r,enter:'drop',exit:'down',boil:3,drift:7});add(`<span class="stk">${lab}</span>`,{t0:t0+.35,t1:23.7,x:x+(lr||20),y:y+330,rot:-r*1.3,enter:'stamp',exit:'down',z:20})};
-ph('polo-spiral.webp',80,600,-5,18.4,'vintage americano');
-ph('fubu-front.webp',575,630,4,19.1,'drops domingo',-10);
-ph('jeans-tag.webp',100,1040,3,19.8,'etiquetas reales');
-ph('profile_crop.png',570,1010,-3,20.5,'BO → AR',30);
+pill(18.03,26.25,150,'PASO 1','red');
+stack(18.9,26.25,250,[{t:'Estudiamos',s:150},{t:'la marca',s:150,at:19.3}],{dark:true,align:'c'});
+const ph=(src,x,y,r,t0,lab,lr)=>{add(`<div class="card" style="width:420px"><img src="shots/${src}"></div>`,{t0,t1:26.25,x,y,rot:r,enter:'drop',exit:'down',boil:3,drift:7});add(`<span class="stk">${lab}</span>`,{t0:t0+.3,t1:26.25,x:x+(lr||20),y:y+330,rot:-r*1.3,enter:'stamp',exit:'down',z:20})};
+ph('polo-spiral.webp',80,600,-5,20.25,'vintage americano');
+ph('fubu-front.webp',575,630,4,21.7,'drops domingo',-10);
+ph('jeans-tag.webp',100,1040,3,23.5,'sus etiquetas');
+ph('profile_crop.png',570,1010,-3,24.9,'a dónde envían',-20);
 // 6 · tipografía
-pill(23.95,29.5,150,'PASO 2','red');
-stack(24.05,29.5,250,[{t:'La tipografía',s:150}],{align:'c'});
-add('<svg width="330" height="330" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#000" stroke="#fff" stroke-width="2.2"/><text x="50" y="55" fill="#fff" font-family="Anton" font-size="24" text-anchor="middle">ARCHIVE</text><text x="50" y="70" fill="#fff" font-family="Anton" font-size="11" text-anchor="middle">SC</text></svg>',{t0:24.45,t1:26.2,y:470,align:'c',enter:'stamp',exit:'up',drift:8});
-stack(24.9,26.2,880,[{t:'su logo es una letra',s:84},{t:'<b>condensada y gruesa</b>',s:92}],{gap:.4});
-stack(26.3,29.5,450,[{t:'así que usamos',s:96}],{align:'c'});
-const an=add('<span>A</span><span>N</span><span>T</span><span>O</span><span>N</span>',{cls:'L',t0:26.6,t1:29.5,y:600,align:'c',enter:'cut',drift:10,typing:true});an.node.style.fontSize='420px';an.node.style.color='#d7182a';an.node.style.textShadow='12px 12px 0 #fff';
-stack(27.9,29.5,1100,[{t:'<span style="text-transform:none">AaBbCc 0123</span>',s:110}],{align:'c'});
-pill(28.3,29.5,1330,'+ Inter para leer fácil','lite');
+pill(26.43,34.0,150,'PASO 2','red');
+stack(27.0,34.0,250,[{t:'La tipografía',s:150}],{align:'c'});
+add('<svg width="330" height="330" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#000" stroke="#fff" stroke-width="2.2"/><text x="50" y="55" fill="#fff" font-family="Anton" font-size="24" text-anchor="middle">ARCHIVE</text><text x="50" y="70" fill="#fff" font-family="Anton" font-size="11" text-anchor="middle">SC</text></svg>',{t0:28.35,t1:32.1,y:470,align:'c',enter:'stamp',exit:'up',drift:8});
+stack(28.5,32.1,880,[{t:'su logo es una letra',s:84},{t:'<b>condensada y gruesa</b>',s:92,at:30.0}],{});
+stack(32.2,34.0,450,[{t:'así que usamos',s:96}],{align:'c'});
+const an=add('<span>A</span><span>N</span><span>T</span><span>O</span><span>N</span>',{cls:'L',t0:33.1,t1:34.0,y:600,align:'c',enter:'cut',drift:10,typing:true});an.node.style.fontSize='420px';an.node.style.color='#d7182a';an.node.style.textShadow='12px 12px 0 #fff';
+pill(33.35,34.0,1180,'+ Inter para leer fácil','lite');
 // 7 · colores
-pill(29.75,33.5,150,'PASO 3','red');
-stack(29.85,33.5,250,[{t:'Sus colores',s:150}],{dark:true,align:'c'});
-[['#0d0d0d','Negro','el de su logo',90,480,-3],['#ffffff','Blanco','la letra del logo',570,500,3],['#8f8a84','Gris','la alfombra de sus fotos',90,990,2],['#d7182a','Rojo','sus stickers de TikTok',570,1010,-2]].forEach(([c,n,d,x,y,r],i)=>add(`<div class="sw"><div class="c" style="background:${c}"></div><div class="t"><b>${n}</b><span>${d}</span></div></div>`,{t0:30.2+i*.4,t1:33.5,x,y,rot:r,enter:'drop',exit:'down',boil:3,drift:6}));
+pill(34.18,42.0,150,'PASO 3','red');
+stack(35.04,42.0,250,[{t:'Sus colores',s:150}],{dark:true,align:'c'});
+[['#0d0d0d','Negro','el de su logo',90,480,-3,36.05],['#ffffff','Blanco','la letra del logo',570,500,3,37.3],['#8f8a84','Gris','la alfombra de sus fotos',90,990,2,38.4],['#d7182a','Rojo','sus stickers de TikTok',570,1010,-2,40.6]].forEach(([c,n,d,x,y,r,t0])=>add(`<div class="sw"><div class="c" style="background:${c}"></div><div class="t"><b>${n}</b><span>${d}</span></div></div>`,{t0,t1:42.0,x,y,rot:r,enter:'drop',exit:'down',boil:3,drift:6}));
 // 8 · la armamos
-pill(33.75,40.9,150,'PASO 4','red');
-stack(33.85,40.9,250,[{t:'La armamos',s:150}],{align:'c'});
-[['s_hero.png','cuenta regresiva al drop'],['s_qr.png','pago con QR'],['s_done.png','cada compra con su código'],['s_trk.png','rastreo del pedido'],['s_panel.png','panel para la tienda']].forEach(([s,l],i)=>{const t0=34.3+i*1.3,t1=i===4?40.9:t0+1.3;add(`<div class="phone"><img src="shots/${s}"></div>`,{t0,t1,y:430,align:'c',rot:i%2?3:-3,enter:i%2?'right':'left',exit:'cut',boil:3,drift:6});add(`<span class="stk">${l}</span>`,{t0:t0+.25,t1,y:1400,align:'c',rot:i%2?-2:2,enter:'stamp',exit:'cut',z:20})});
-// 9 · al dueño le encantó
-stack(41.15,44.5,480,[{t:'Al dueño',s:200},{t:'<b>le encantó</b>',s:200},{t:'y nos agradeció',s:140}],{gap:.42,space:16});
-pill(43.1,44.5,1340,'gracias Archive SC por la confianza');
-// 10 · cierre
-stack(44.75,END,420,[{t:'¿Tienes',s:220},{t:'una marca?',s:220},{t:'<b>¿quién sigue?</b>',s:170,at:45.75}],{gap:.38,exit:'cut',space:16});
-pill(46.6,END,1360,'comenta tu marca ↓','red');
+pill(42.19,51.1,150,'PASO 4','red');
+stack(43.09,51.1,250,[{t:'La armamos',s:150}],{align:'c'});
+[['s_hero.png','cuenta regresiva al drop',43.4,44.1],['s_qr.png','pago con QR',45.74,45.8],['s_done.png','cada compra con su código',46.93,47.0],['s_trk.png','rastreo del pedido',48.54,48.6],['s_panel.png','panel para la tienda',49.7,49.75]].forEach(([s,l,t0,lt],i,a)=>{const t1=i===4?51.1:a[i+1][2];add(`<div class="phone"><img src="shots/${s}"></div>`,{t0,t1,y:430,align:'c',rot:i%2?3:-3,enter:i%2?'right':'left',exit:'cut',boil:3,drift:6});add(`<span class="stk">${l}</span>`,{t0:lt,t1,y:1400,align:'c',rot:i%2?-2:2,enter:'stamp',exit:'cut',z:20})});
+// 9 · versátil: teléfono, iPad y compu
+stack(51.26,54.2,170,[{t:'Un pelado de 16',s:120},{t:'es así de',s:120,at:52.3},{t:'<b>versátil</b>',s:140,at:53.0}],{align:'c',space:6});
+dev('<div class="ipad" style="width:960px"><img></div>',{dir:'ip',start:1,rate:3,max:448},{t0:51.6,t1:54.2,y:700,align:'c',rot:-2,enter:'drop',exit:'cut'});
+stack(54.26,57.25,150,[{t:'la optimizó',s:120},{t:'<b>y la renderizó</b>',s:120,at:55.2}],{align:'c'});
+dev('<div class="phone" style="width:470px"><img></div>',{dir:'ph',start:1,rate:2.2,max:277},{t0:54.4,t1:57.25,y:430,align:'c',rot:3,enter:'right',exit:'cut'});
+stack(57.3,59.45,170,[{t:'se ve bien',s:130},{t:'<b>en todo</b>',s:130,at:57.6}],{align:'c',exit:'cut'});
+stack(59.52,61.3,140,[{t:'así va a quedar',s:110},{t:'<b>tu próxima página</b>',s:110,at:60.1}],{align:'c',exit:'cut'});
+dev('<div class="lap" style="width:860px"><div class="scr"><img></div><div class="base"></div></div>',{dir:'pc',start:1,rate:.6,max:54},{t0:57.3,t1:61.3,y:470,align:'c',rot:-1,enter:'drop',exit:'cut'});
+dev('<div class="ipad" style="width:540px;padding:16px"><img></div>',{dir:'ip',start:200,rate:2,max:448},{t0:57.3,t1:61.3,x:70,y:1060,rot:-3,enter:'left',exit:'cut',z:12});
+dev('<div class="phone" style="width:250px;padding:9px;border-radius:30px"><img style="border-radius:22px"></div>',{dir:'ph',start:90,rate:1.6,max:277},{t0:57.3,t1:61.3,x:720,y:930,rot:4,enter:'right',exit:'cut',z:13});
+add('<span class="stk">teléfono</span>',{t0:57.4,t1:61.3,x:690,y:1430,rot:-3,enter:'stamp',exit:'cut',z:20});
+add('<span class="stk w" style="text-transform:none">iPad</span>',{t0:58.05,t1:61.3,x:110,y:1440,rot:2,enter:'stamp',exit:'cut',z:20});
+add('<span class="stk">compu</span>',{t0:58.8,t1:61.3,x:770,y:470,rot:4,enter:'stamp',exit:'cut',z:20});
+// 10 · al dueño le encantó
+stack(61.46,63.8,480,[{t:'Al dueño',s:200},{t:'<b>le encantó</b>',s:200,at:61.95},{t:'y nos agradeció',s:140,at:62.86}],{space:16});
+// 11 · cierre
+stack(63.96,END,420,[{t:'¿Tienes',s:220},{t:'una marca?',s:220,at:64.25},{t:'<b>¿quién sigue?</b>',s:170,at:65.06}],{exit:'cut',space:16});
+pill(65.88,END,1360,'comenta tu marca ↓','red');
 
 /* ---------- motor stop motion (12 cuadros por segundo) ---------- */
 const ENT={up:[[0,140],[0,50],[0,12]],down:[[0,-140],[0,-50],[0,-12]],left:[[-420,0],[-120,0],[-20,0]],right:[[420,0],[120,0],[20,0]],drop:[[0,-700],[0,-160],[0,30]]};
 function fit(){for(const e of els)if(e.fit){let s=parseFloat(e.node.style.fontSize);while(e.node.scrollWidth>MAXW&&s>40){s-=4;e.node.style.fontSize=s+'px'}}}
 function sceneAt(t){return scenes.find(s=>t>=s.t0&&t<s.t1)||scenes[scenes.length-1]}
+const fr=(d,i)=>`${d}/${String(i).padStart(4,'0')}.jpg`;
 let curBg='';
 async function render(t){
-  const f=Math.round(t*12);
+  const f=Math.round(t*12),waits=[];
   const sc=sceneAt(t),k0=Math.floor((t-sc.t0)*12+1e-6);
-  if(sc.bg){const src=`${sc.bg.clip}/${String(sc.bg.start+1+k0*2).padStart(4,'0')}.jpg`;bg.style.display='block';if(src!==curBg){bg.src=src;curBg=src;await bg.decode().catch(()=>{})}dim.style.opacity=sc.dim;stage.style.background='#000'}
+  if(sc.bg){const src=fr(sc.bg.clip,sc.bg.start+1+k0*2);bg.style.display='block';if(src!==curBg){bg.src=src;curBg=src;waits.push(bg.decode().catch(()=>{}))}dim.style.opacity=sc.dim;stage.style.background='#000'}
   else{bg.style.display='none';dim.style.opacity=0;stage.style.background=sc.color}
   flash.style.background=sc.flash&&k0===0?sc.flash:'transparent';
   grain.src=`grain${f%4}.png`;
@@ -123,16 +140,17 @@ async function render(t){
     let dx=0,dy=0,s=1,r=e.rot;
     if(e.enter==='stamp'&&k<3)s=[1.4,.92,1.03][k];
     else if(ENT[e.enter]&&k<3){[dx,dy]=ENT[e.enter][k];if(e.enter==='drop')r+=[12,-5,2][k]}
-    if(ke<3&&e.exit!=='cut'){const j=2-ke,m=[[0,20],[0,110],[0,320]][j];dy+=e.exit==='down'?m[1]:-m[1]}
+    if(ke<3&&e.exit!=='cut'){const j=2-ke,m=[20,110,320][j];dy+=e.exit==='down'?m:-m}
     dx+=(rnd(e.id*7.1+f)-.5)*e.boil;dy+=(rnd(e.id*13.7+f)-.5)*e.boil;r+=(rnd(e.id*3.3+f)-.5)*e.boilR*2;
     dy+=e.drift*Math.sin((f/12-e.t0)*Math.PI*2/3+e.id);
-    const ax=e.align==='c'?`left:${W/2}px;`:`left:${e.x}px;`;
     e.node.style.left=e.align==='c'?(W/2)+'px':e.x+'px';e.node.style.top=e.y+'px';
     e.node.style.transform=`translate(${e.align==='c'?'-50%':'0'},0) translate(${dx}px,${dy}px) rotate(${r}deg) scale(${s})`;
     if(e.typing){[...e.node.children].forEach((c,i)=>c.style.visibility=i<=k?'visible':'hidden')}
-    const ring=e.node.querySelector('.ring');if(ring){const kk=Math.floor((t-9.4)*12);ring.style.display=kk>=0?'block':'none';ring.style.transform=`scale(${kk===0?1.25:kk===1?.95:1}) rotate(${-1+(rnd(f)-.5)*2}deg)`}
+    if(e.clip){const c=e.clip,i=Math.min(c.max,Math.round(c.start+k*2*c.rate)),img=e.node.querySelector('img'),src=fr(c.dir,i);if(img.dataset.s!==src){img.src=src;img.dataset.s=src;waits.push(img.decode().catch(()=>{}))}}
+    if(e.ringAt){const ring=e.node.querySelector('.ring'),kk=Math.floor((t-e.ringAt)*12);ring.style.display=kk>=0?'block':'none';ring.style.transform=`scale(${kk===0?1.25:kk===1?.95:1}) rotate(${-1+(rnd(f)-.5)*2}deg)`}
   }
+  await Promise.all(waits);
 }
-window.ready=(async()=>{await document.fonts.load('150px Anton');await document.fonts.load('700 46px Inter');await Promise.all([...document.images].filter(i=>i.src).map(i=>i.decode().catch(()=>{})));fit();return{END,hits:[...els.map(e=>e.t0),...scenes.map(s=>s.t0)]}})();
+window.ready=(async()=>{await document.fonts.load('150px Anton');await document.fonts.load('700 46px Inter');await Promise.all([...document.images].filter(i=>i.src).map(i=>i.decode().catch(()=>{})));fit();return{END,hits:[...els.map(e=>e.t0),...scenes.map(s=>s.t0)],scenes:scenes.map(s=>s.t0)}})();
 window.render=render;
 </script></body></html>
