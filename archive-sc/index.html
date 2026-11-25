@@ -99,7 +99,7 @@ nav a{text-decoration:none;opacity:.85}nav a:hover{opacity:1;text-decoration:und
 .fardo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
 .fardo .pic{border-radius:16px;overflow:hidden;aspect-ratio:4/3.4}
 .fardo h2{font-size:clamp(40px,5.4vw,66px)}
-.offer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+.offer{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:14px;margin:24px 0}
 .offer div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
 .offer b{display:block;font:400 clamp(30px,3.4vw,40px)/1.05 Anton,sans-serif;white-space:nowrap}
 .offer small{color:var(--mute);font-size:14px}
@@ -109,7 +109,7 @@ nav a{text-decoration:none;opacity:.85}nav a:hover{opacity:1;text-decoration:und
 .feria .city{font-size:13px;font-weight:600;color:var(--red)}
 .feria h3{font-size:28px;margin:4px 0 8px}
 .feria p{margin:0;color:var(--mute)}
-.ship{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px}
+.ship{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
 .ship div{border-radius:14px;padding:22px;background:var(--ink);color:var(--bg)}
 .ship h3{font-size:30px;margin-bottom:6px}
 .ship p{margin:0;opacity:.85}
@@ -206,18 +206,18 @@ footer b{color:#fff}
 </div></header>
 
 <section class="hero" id="top">
-  <img src="img/polo-spiral.webp" alt="Espiral de polos Ralph Lauren y Lacoste del drop 22/11">
+  <img src="img/polo-spiral.webp" data-i="polo-spiral" alt="Espiral de polos Ralph Lauren y Lacoste del drop 22/11">
   <div class="band"><div class="wrap">
     <div>
       <span class="sticker">New drop 22/11 · Polo Ralph Lauren</span>
       <h1>Ropa vintage<br>sin vueltas</h1>
-      <p>Ropa americana que seleccionamos prenda por prenda en las ferias de Bolivia. Sale en drops todos los domingos y la mandamos a toda Bolivia y Argentina.</p>
+      <p>Ropa americana que seleccionamos prenda por prenda en las ferias de Bolivia. Sale en drops todos los domingos: venta minorista en Santa Cruz, envíos a toda Bolivia y envíos internacionales.</p>
       <div class="cta"><a class="btn red" href="#como">Comenta “Grupo” y entra</a><a class="btn ghost" href="#drop">Ver el drop</a></div>
     </div>
     <div class="clock" aria-live="polite">
       <small>Próximo drop · <span id="dropDate">domingo 20:00 (hora Bolivia)</span></small>
       <div class="t"><div><b id="cd-d">0</b><i>días</i></div><div><b id="cd-h">00</b><i>horas</i></div><div><b id="cd-m">00</b><i>min</i></div><div><b id="cd-s">00</b><i>seg</i></div></div>
-      <div class="stats"><span><b>19,3 mil</b> me gusta</span><span><b>1.193</b> seguidores</span><span><b>BO · AR</b> envíos</span></div>
+      <div class="stats"><span><b>19,3 mil</b> me gusta</span><span><b>1.193</b> seguidores</span><span><b>Envíos</b> internacionales</span></div>
     </div>
   </div></div>
 </section>
@@ -251,14 +251,15 @@ footer b{color:#fff}
 </div></section>
 
 <section class="band" id="fardos"><div class="wrap fardo">
-  <div class="pic"><img src="img/brooks-polos.webp" alt="Nueve polos Brooks Brothers en distintos colores" loading="lazy"></div>
+  <div class="pic"><img src="img/brooks-polos.webp" data-i="brooks-polos" alt="Nueve polos Brooks Brothers en distintos colores"></div>
   <div>
-    <span class="sticker">Mayorista</span>
+    <span class="sticker">Mayorista · Bolivia y el mundo</span>
     <h2>¿Quieres empezar en el negocio de la ropa vintage?</h2>
-    <p style="color:var(--mute);margin:14px 0 0">Minifardos de polos americanos ya seleccionados: marcas buenas, sin manchas, listos para revender. Ideal para arrancar tu propia tienda.</p>
+    <p style="color:var(--mute);margin:14px 0 0">Minifardos de polos americanos ya seleccionados: marcas buenas, sin manchas, listos para revender. Ideal para arrancar tu propia tienda, en Bolivia o en otro país: hacemos envíos internacionales.</p>
     <div class="offer">
       <div><small>Bolivia</small><b>12 prendas · 330 Bs</b><small>Envíos a todo el país</small></div>
       <div><small>Argentina</small><b>12 prendas · $60.000</b><small>Envíos a todo el país</small></div>
+      <div><small>Otros países</small><b>Fardos por mayor</b><small>Cotiza tu envío internacional por mensaje</small></div>
     </div>
     <a class="btn red" href="https://www.instagram.com/archive.sc0/">Pedir mi minifardo</a>
   </div>
@@ -272,12 +273,14 @@ footer b{color:#fff}
     <article><div class="city">Santa Cruz</div><h3>Nuestra base</h3><p>Aquí lavamos, revisamos, medimos y fotografiamos cada prenda antes del drop.</p></article>
   </div>
   <div class="ship">
-    <div><h3>Bolivia</h3><p>Envíos a los 9 departamentos. Santa Cruz, La Paz, Cochabamba y Oruro llegan en 1 a 3 días.</p></div>
-    <div><h3>Argentina</h3><p>Envíos a todo el país, de Córdoba a Tierra del Fuego. Precios en pesos al confirmar.</p></div>
+    <div><h3>Santa Cruz · minorista</h3><p>Compra prenda por prenda en los drops del domingo. Entrega en la ciudad o recojo coordinado.</p></div>
+    <div><h3>Bolivia</h3><p>Envíos a los 9 departamentos. La Paz, Cochabamba y Oruro llegan en 1 a 3 días.</p></div>
+    <div><h3>Internacional · mayorista</h3><p>Fardos por mayor con envío a Argentina y otros países. Escríbenos y cotizamos el envío.</p></div>
   </div>
   <div style="margin-top:36px">
     <details><summary>¿La ropa es original?</summary><p>Sí. Es ropa americana de segunda mano. Mostramos la etiqueta de cada prenda en las fotos para que veas marca, talla y origen.</p></details>
     <details><summary>¿Cómo sé si me queda?</summary><p>Cada prenda trae talla de etiqueta y medidas tomadas en plano (ancho y largo). Si dudas, escríbenos y te mandamos más fotos.</p></details>
+    <details><summary>¿Envían a otros países?</summary><p>Sí. Para otros países trabajamos por mayor: fardos seleccionados con envío internacional. En Santa Cruz vendemos por menor, prenda por prenda.</p></details>
     <details><summary>¿Hacen cambios?</summary><p>Como cada pieza es única no hacemos cambios por talla, pero si la prenda llega con un detalle que no mostramos, te devolvemos el dinero.</p></details>
     <details><summary>¿Cuánto tiempo me guardan una reserva?</summary><p>24 horas. Después, la prenda vuelve a quedar disponible para el siguiente en la lista.</p></details>
   </div>
@@ -307,7 +310,7 @@ footer b{color:#fff}
 </div></section>
 
 <footer class="band" style="padding-block:28px"><div class="wrap">
-  <div><b>ARCHIVE SC · Tienda de Ropa</b><br>Santa Cruz, Bolivia. Envíos a todo Bolivia y Argentina.</div>
+  <div><b>ARCHIVE SC · Tienda de Ropa</b><br>Santa Cruz, Bolivia. Minorista en Santa Cruz, mayorista con envíos internacionales.</div>
   <div>TikTok <a href="https://www.tiktok.com/@archive.sc"><b>@archive.sc</b></a><br>Instagram <a href="https://www.instagram.com/archive.sc0/"><b>@archive.sc0</b></a></div>
 </div></footer>
 
@@ -316,6 +319,7 @@ footer b{color:#fff}
 
 <script>
 {
+const IMG=n=>'img/'+n+'.webp'; // IMG_HOOK
 const RATE=182; // 330 Bs = 60.000 ARS, según su propia oferta de fardos
 const P=[
  {id:'fubu',cat:'Chaquetas',brand:'FUBU The Collection',name:'Varsity satinada 05 amarilla y azul',size:'L',bs:650,st:'sold',img:['fubu-front','fubu-back','fubu-tag'],d:{Material:'100% nylon, relleno poliéster',Origen:'Hecha en Corea',Estado:'Muy bueno, brillo original'}},
@@ -360,14 +364,14 @@ async function setStatus(code,s){
 function newCode(){const d=new Date(),A='ABCDEFGHJKMNPQRSTUVWXYZ23456789';let c='';for(let i=0;i<3;i++)c+=A[Math.floor(Math.random()*A.length)];return `ASC-${String(d.getDate()).padStart(2,'0')}${String(d.getMonth()+1).padStart(2,'0')}-${c}`}
 
 /* ---------- grilla ---------- */
-$('#tk').textContent=Array(2).fill('POLO RALPH LAUREN ✦ BROOKS BROTHERS ✦ FUBU ✦ LEVI\'S 559 ✦ CARHARTT ✦ NIKE ✦ TRUE RELIGION ✦ ESSENTIALS ✦ ').join('').repeat(2);
+$('#tk').textContent=Array(2).fill('POLO RALPH LAUREN ✦ ENVÍOS INTERNACIONALES ✦ BROOKS BROTHERS ✦ FUBU ✦ LEVI\'S 559 ✦ MAYORISTA Y MINORISTA ✦ CARHARTT ✦ NIKE ✦ ESSENTIALS ✦ ').join('').repeat(2);
 const cats=['Todo',...new Set(P.map(p=>p.cat))];
 function chips(){$('#chips').innerHTML=cats.map(c=>`<button class="chip" type="button" aria-pressed="${c===cat}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}
 function grid(){
   $('#grid').innerHTML=P.filter(p=>cat==='Todo'||p.cat===cat).map(p=>{
     const s=state(p),[lab,cls]=bag.includes(p.id)?['En tu reserva','res']:LAB[s];
     return `<article class="card" tabindex="0" data-id="${p.id}">
-      <div class="ph"><img src="img/${p.img[0]}.webp" alt="${esc(p.brand+' '+p.name)}" loading="lazy"><span class="tag ${cls}">${lab}</span>${p.id==='fubu'?'<span class="stamp">Joyita vendida</span>':''}</div>
+      <div class="ph"><img src="${IMG(p.img[0])}" alt="${esc(p.brand+' '+p.name)}"><span class="tag ${cls}">${lab}</span></div>
       <div class="inf"><span class="br">${esc(p.brand)}</span><h3>${esc(p.name)}</h3><span class="ars">Talla ${esc(p.size)}</span>
       <div class="row"><span class="price">${p.bs} Bs</span><span class="ars">≈ ${ars(p.bs)} ARS</span></div></div></article>`}).join('');
 }
@@ -384,8 +388,8 @@ function open(id){
   const p=P.find(x=>x.id===id),s=state(p),inBag=bag.includes(p.id);
   const action=s==='sold'?'<button class="btn ghost" disabled>Ya se vendió</button>':s==='res'?'<button class="btn ghost" id="wait" type="button">Avisarme si se libera</button>':inBag?'<button class="btn red" id="go" type="button">Ir a pagar</button><button class="btn ghost" id="rm" type="button">Quitar de mi reserva</button>':'<button class="btn red" id="add" type="button">Reservar esta prenda</button>';
   ov.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(p.name)}">
-    <div class="gal"><div class="main"><img id="mimg" src="img/${p.img[0]}.webp" alt="${esc(p.name)}"></div>
-    ${p.img.length>1?`<div class="thumbs">${p.img.map((m,k)=>`<button type="button" data-k="${k}" aria-current="${k===0}" aria-label="Foto ${k+1}"><img src="img/${m}.webp" alt=""></button>`).join('')}</div>`:''}</div>
+    <div class="gal"><div class="main"><img id="mimg" src="${IMG(p.img[0])}" alt="${esc(p.name)}"></div>
+    ${p.img.length>1?`<div class="thumbs">${p.img.map((m,k)=>`<button type="button" data-k="${k}" aria-current="${k===0}" aria-label="Foto ${k+1}"><img src="${IMG(m)}" alt=""></button>`).join('')}</div>`:''}</div>
     <div class="md"><button class="x" type="button" aria-label="Cerrar">×</button>
       <span style="color:var(--mute);font-weight:600;font-size:14px">${esc(p.brand)} · ${LAB[s][0]}</span>
       <h3>${esc(p.name)}</h3>
@@ -394,7 +398,7 @@ function open(id){
       ${action}<p id="fb" style="margin:0;font-size:14px;color:var(--mute)"></p>
     </div></div>`;
   ov.hidden=false;dr.hidden=true;
-  ov.querySelectorAll('.thumbs button').forEach(b=>b.onclick=()=>{$('#mimg').src=`img/${p.img[+b.dataset.k]}.webp`;ov.querySelectorAll('.thumbs button').forEach(t=>t.setAttribute('aria-current',t===b))});
+  ov.querySelectorAll('.thumbs button').forEach(b=>b.onclick=()=>{$('#mimg').src=IMG(p.img[+b.dataset.k]);ov.querySelectorAll('.thumbs button').forEach(t=>t.setAttribute('aria-current',t===b))});
   const on=(id,f)=>{const el=ov.querySelector('#'+id);if(el)el.onclick=f};
   on('add',()=>{bag.push(p.id);saveBag();grid();view='bag';showBag()});
   on('go',()=>{view='bag';showBag()});
@@ -420,7 +424,7 @@ function showBag(){
   const top=t=>`<div style="display:flex;align-items:center"><h3>${t}</h3><button class="x" type="button" id="dx" aria-label="Cerrar">×</button></div>`;
   let h='';
   if(view==='bag'){
-    h=top('Mi reserva')+(items.length?items.map(p=>`<div class="li"><img src="img/${p.img[0]}.webp" alt=""><div><b style="font-size:14px">${esc(p.brand)}</b><br><span style="font-size:13px;color:var(--mute)">${esc(p.name)} · ${p.bs} Bs</span></div><button type="button" data-rm="${p.id}">Quitar</button></div>`).join('')
+    h=top('Mi reserva')+(items.length?items.map(p=>`<div class="li"><img src="${IMG(p.img[0])}" alt=""><div><b style="font-size:14px">${esc(p.brand)}</b><br><span style="font-size:13px;color:var(--mute)">${esc(p.name)} · ${p.bs} Bs</span></div><button type="button" data-rm="${p.id}">Quitar</button></div>`).join('')
       +`<div class="sum"><span>Total</span><span>${tot} Bs <span class="ars">≈ ${ars(tot)}</span></span></div><button class="btn red" type="button" id="pay">Pagar ${tot} Bs</button><p style="margin:10px 0 0;font-size:14px;color:var(--mute)">Te guardamos las prendas 24 horas mientras confirmas el pago.</p>`
       :'<p class="empty">Todavía no reservaste nada. Elige una prenda disponible del drop.</p>');
   }else if(view==='form'){
