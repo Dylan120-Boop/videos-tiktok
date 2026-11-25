@@ -1,0 +1,344 @@
+<title>Archive SC Drop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Archive SC: ropa americana vintage seleccionada en Bolivia. Drops todos los domingos, envíos a toda Bolivia y Argentina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: tienda de ropa por drops, segura y callejera
+   IDEA la etiqueta tejida + el feed de TikTok: cada prenda es una ficha de archivo con su estado (disponible, reservado, vendido)
+   PICTURE la espiral de polos real como portada a sangre, y el drop como grilla de fotos propias
+   COLOUR negro del logo, blanco, gris alfombra, rojo etiqueta (#d7182a) para lo que importa
+   TYPE Anton (como el ARCHIVE del logo) + Inter
+   LAYOUT laptop: foto a sangre con título y cuenta regresiva abajo a la izquierda; móvil: foto arriba, título y reloj debajo */
+:root{color-scheme:light dark;--bg:light-dark(#ecebe8,#0d0d0d);--card:light-dark(#fff,#181818);--ink:light-dark(#0d0d0d,#f3f2ef);--mute:light-dark(#5d5b57,#a9a7a2);--line:light-dark(#d3d1cc,#2b2b2b);--red:#d7182a;--ok:light-dark(#137a3a,#4fd17f);--black:#0d0d0d}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;margin:0;overflow-x:clip}
+h1,h2,h3,.disp{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;line-height:1.02;letter-spacing:.005em;margin:0;text-transform:uppercase}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1240px;margin-inline:auto}
+.band{padding-block:clamp(40px,6vw,88px);padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:0;font:600 15px Inter,sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn.red{background:var(--red);color:#fff}
+.btn.red:hover{background:#b31322}
+.btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn:focus-visible,.chip:focus-visible,.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--black);z-index:30}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--black);color:#fff;padding-block:10px;padding-left:max(5vw,16px,env(safe-area-inset-left,0px));padding-right:max(5vw,16px,env(safe-area-inset-right,0px))}
+header .wrap{display:flex;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{width:44px;height:44px;flex:none}
+.logo b{font:400 20px Anton,sans-serif;letter-spacing:.02em}
+nav{display:flex;gap:22px;margin-left:auto;font-size:15px}
+nav a{text-decoration:none;opacity:.85}nav a:hover{opacity:1;text-decoration:underline}
+.bagbtn{position:relative;background:#fff;color:var(--black)}
+.bagbtn span{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;border-radius:999px;font-size:12px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 5px}
+/* hero */
+.hero{position:relative;background:var(--black);color:#fff;min-height:min(88svh,820px);display:grid;align-items:end;overflow:hidden}
+.hero>img{position:absolute;inset:0;opacity:.78}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%),linear-gradient(0deg,rgba(0,0,0,.7),rgba(0,0,0,0) 45%)}
+.hero .band{position:relative;z-index:1;width:100%}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
+.sticker{display:inline-block;background:var(--red);color:#fff;font:600 14px Inter,sans-serif;padding:5px 10px;border-radius:4px;margin-bottom:16px}
+.hero h1{font-size:clamp(56px,9vw,128px)}
+.hero p{font-size:18px;max-width:34em;margin:18px 0 26px;color:#e6e4e0}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.clock{background:rgba(13,13,13,.72);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:20px;backdrop-filter:blur(6px)}
+.clock small{display:block;font-size:14px;color:#cfcdc8}
+.clock .t{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+.clock .t div{background:#fff;color:var(--black);border-radius:8px;text-align:center;padding:8px 2px 6px}
+.clock .t b{display:block;font:400 clamp(30px,4vw,44px)/1 Anton,sans-serif;font-variant-numeric:tabular-nums}
+.clock .t i{font-style:normal;font-size:13px;color:#555}
+.stats{display:flex;flex-wrap:wrap;gap:18px;font-size:14px;color:#cfcdc8}.stats b{color:#fff;font-size:17px}
+/* ticker */
+.ticker{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;padding-block:12px}
+.ticker div{display:inline-block;font:400 22px Anton,sans-serif;letter-spacing:.02em;animation:tk 38s linear infinite;padding-left:16px}
+@keyframes tk{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker div{animation:none}}
+/* drop */
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.head h2{font-size:clamp(40px,6vw,72px)}
+.head p{margin:6px 0 0;color:var(--mute);max-width:36em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:0 16px;min-height:40px;font:500 14px Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;border:1px solid var(--line);transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.ph{position:relative;aspect-ratio:1/1;background:#333}
+.tag{position:absolute;top:10px;left:10px;font:600 13px Inter,sans-serif;padding:4px 9px;border-radius:4px;background:#fff;color:var(--black)}
+.tag.sold{background:var(--black);color:#fff}
+.tag.res{background:#f2c230;color:var(--black)}
+.stamp{position:absolute;inset:auto 0 18px;margin:auto;width:max-content;transform:rotate(-8deg);border:3px solid #fff;color:#fff;font:400 28px Anton,sans-serif;padding:2px 14px;background:rgba(215,24,42,.88)}
+.card .inf{padding:14px 16px 16px;display:flex;flex-direction:column;gap:2px;flex:1}
+.card .br{font-size:13px;color:var(--mute);font-weight:600}
+.card h3{font:600 16px/1.3 Inter,sans-serif;text-transform:none}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:10px;gap:8px}
+.price{font:400 24px Anton,sans-serif;white-space:nowrap}
+.ars{font-size:13px;color:var(--mute);white-space:nowrap}
+.note{font-size:13px;color:var(--mute);margin-top:18px}
+/* how */
+.dark{background:var(--black);color:#f3f2ef}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
+.step{border-top:2px solid #fff;padding-top:16px}
+.step .n{font:400 56px/1 Anton,sans-serif;color:var(--red)}
+.step h3{font-size:26px;margin:8px 0}
+.step p{margin:0;color:#c9c7c2}
+.comment{margin-top:36px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center}
+.tt{background:#fff;color:#111;border-radius:16px;padding:18px;font-size:15px;max-width:460px}
+.tt .u{display:flex;gap:10px;margin-bottom:14px}
+.tt .u:last-child{margin:0}
+.av{width:36px;height:36px;border-radius:50%;background:var(--black);flex:none;display:grid;place-items:center;color:#fff;font:400 9px Anton,sans-serif}
+.av.me{background:#c9c7c2}
+.tt small{color:#777;font-size:13px;display:block}
+/* fardo */
+.fardo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.fardo .pic{border-radius:16px;overflow:hidden;aspect-ratio:4/3.4}
+.fardo h2{font-size:clamp(40px,5.4vw,66px)}
+.offer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+.offer div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.offer b{display:block;font:400 clamp(30px,3.4vw,40px)/1.05 Anton,sans-serif;white-space:nowrap}
+.offer small{color:var(--mute);font-size:14px}
+/* feria */
+.feria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.feria article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.feria .city{font-size:13px;font-weight:600;color:var(--red)}
+.feria h3{font-size:28px;margin:4px 0 8px}
+.feria p{margin:0;color:var(--mute)}
+.ship{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px}
+.ship div{border-radius:14px;padding:22px;background:var(--ink);color:var(--bg)}
+.ship h3{font-size:30px;margin-bottom:6px}
+.ship p{margin:0;opacity:.85}
+/* faq */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{font-weight:600;font-size:17px;cursor:pointer}
+details p{margin:10px 0 0;color:var(--mute);max-width:60em}
+/* closing + footer */
+.close{background:var(--red);color:#fff;text-align:left}
+.close h2{font-size:clamp(48px,8vw,104px)}
+.close .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px}
+.close .btn{background:#fff;color:var(--black)}
+footer{background:var(--black);color:#c9c7c2;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+footer b{color:#fff}
+/* modal + bag */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;display:grid;place-items:center;padding:16px}
+.modal{background:var(--card);color:var(--ink);border-radius:18px;max-width:900px;width:100%;max-height:92svh;overflow:auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.gal{background:#222;display:flex;flex-direction:column}
+.gal .main{aspect-ratio:1/1}
+.thumbs{display:flex;gap:6px;padding:6px}
+.thumbs button{width:64px;height:64px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;cursor:pointer;background:none}
+.thumbs button[aria-current=true]{border-color:var(--red)}
+.md{padding:24px;display:flex;flex-direction:column;gap:10px}
+.md h3{font-size:34px}
+.md dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:6px 0;font-size:15px}
+.md dt{color:var(--mute)}.md dd{margin:0}
+.x{margin-left:auto;background:none;border:0;font-size:28px;cursor:pointer;color:inherit;line-height:1;width:44px;height:44px}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--card);color:var(--ink);z-index:41;display:flex;flex-direction:column;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));box-shadow:-10px 0 30px rgba(0,0,0,.25)}
+.drawer h3{font-size:32px}
+.li{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.li img{width:56px;height:56px;border-radius:8px}
+.li button{background:none;border:0;color:var(--mute);cursor:pointer;font-size:14px;min-height:44px}
+.sum{display:flex;justify-content:space-between;font-weight:600;margin:16px 0 12px;font-size:18px}
+.empty{color:var(--mute);padding:24px 0}
+.msg{background:var(--bg);border-radius:10px;padding:12px;font-size:14px;white-space:pre-wrap;margin-bottom:12px}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){nav{display:none}.bagbtn{margin-left:auto}.fardo,.comment,.ship,.modal{grid-template-columns:minmax(0,1fr)}.feria{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.hero{min-height:0;align-items:stretch;grid-template-rows:56vw auto}.hero>img{position:relative;grid-row:1;opacity:1}.hero::after{display:none}.hero .band{grid-row:2}.steps{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card .inf{padding:10px 10px 12px}.card h3{font-size:14px}.price{font-size:20px}.stamp{font-size:20px}.offer{grid-template-columns:minmax(0,1fr)}.offer b{font-size:28px;white-space:normal}}
+</style>
+
+<header><div class="wrap">
+  <a class="logo" href="#top" aria-label="Archive SC inicio">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49" fill="#000" stroke="#fff" stroke-width="2"/><text x="50" y="55" fill="#fff" font-family="Anton,Impact,sans-serif" font-size="25" text-anchor="middle">ARCHIVE</text><text x="50" y="70" fill="#fff" font-family="Anton,Impact,sans-serif" font-size="11" text-anchor="middle">SC</text></svg>
+    <b>ARCHIVE SC</b>
+  </a>
+  <nav><a href="#drop">Drop</a><a href="#como">Cómo comprar</a><a href="#fardos">Fardos</a><a href="#envios">Envíos</a></nav>
+  <button class="btn bagbtn" id="bagBtn" type="button">Mi reserva <span id="bagN">0</span></button>
+</div></header>
+
+<section class="hero" id="top">
+  <img src="img/polo-spiral.webp" alt="Espiral de polos Ralph Lauren y Lacoste del drop 22/11">
+  <div class="band"><div class="wrap">
+    <div>
+      <span class="sticker">New drop 22/11 · Polo Ralph Lauren</span>
+      <h1>Ropa vintage<br>sin vueltas</h1>
+      <p>Ropa americana que seleccionamos prenda por prenda en las ferias de Bolivia. Sale en drops todos los domingos y la mandamos a toda Bolivia y Argentina.</p>
+      <div class="cta"><a class="btn red" href="#como">Comenta “Grupo” y entra</a><a class="btn ghost" href="#drop">Ver el drop</a></div>
+    </div>
+    <div class="clock" aria-live="polite">
+      <small>Próximo drop · <span id="dropDate">domingo 20:00 (hora Bolivia)</span></small>
+      <div class="t"><div><b id="cd-d">0</b><i>días</i></div><div><b id="cd-h">00</b><i>horas</i></div><div><b id="cd-m">00</b><i>min</i></div><div><b id="cd-s">00</b><i>seg</i></div></div>
+      <div class="stats"><span><b>19,3 mil</b> me gusta</span><span><b>1.193</b> seguidores</span><span><b>BO · AR</b> envíos</span></div>
+    </div>
+  </div></div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div id="tk"></div></div>
+
+<section class="band" id="drop"><div class="wrap">
+  <div class="head">
+    <div><h2>El drop de esta semana</h2><p>Una sola pieza de cada cosa. Cuando alguien la reserva, se marca y sale de la lista.</p></div>
+    <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="note">Precios y tallas de ejemplo para la demo. Los precios en pesos argentinos son aproximados.</p>
+</div></section>
+
+<section class="band dark" id="como"><div class="wrap">
+  <div class="head"><div><h2>Cómo funciona un drop</h2><p style="color:#c9c7c2">El mismo sistema que ya usan en TikTok, ahora con su propia página.</p></div></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Comenta “Grupo”</h3><p>En cualquier video de @archive.sc. Te mandamos el acceso al grupo privado por mensaje.</p></div>
+    <div class="step"><div class="n">2</div><h3>Domingo, drop</h3><p>Las fotos salen primero en el grupo y en esta página, con talla, medidas y precio.</p></div>
+    <div class="step"><div class="n">3</div><h3>El primero se lo lleva</h3><p>Reservas la prenda aquí o por mensaje. Te la guardamos 24 horas.</p></div>
+    <div class="step"><div class="n">4</div><h3>Pagas y te llega</h3><p>QR o transferencia en Bolivia, transferencia en Argentina. Enviamos con código de seguimiento.</p></div>
+  </div>
+  <div class="comment">
+    <div class="tt" aria-label="Ejemplo de comentario en TikTok">
+      <div class="u"><div class="av me"></div><div><small>tú</small>Grupo 🙌</div></div>
+      <div class="u"><div class="av">ARCHIVE</div><div><small>Archive SC · Tienda de Ropa</small>Listo, te envié el acceso por privado 📲</div></div>
+    </div>
+    <div><h3 style="font-size:clamp(30px,4vw,48px)">Antes en el grupo, después para todos</h3><p style="color:#c9c7c2;margin:10px 0 20px">Los del grupo ven el drop una hora antes. Lo que queda se publica aquí a las 21:00.</p><a class="btn red" href="https://www.tiktok.com/@archive.sc">Ir al TikTok</a></div>
+  </div>
+</div></section>
+
+<section class="band" id="fardos"><div class="wrap fardo">
+  <div class="pic"><img src="img/brooks-polos.webp" alt="Nueve polos Brooks Brothers en distintos colores" loading="lazy"></div>
+  <div>
+    <span class="sticker">Mayorista</span>
+    <h2>¿Quieres empezar en el negocio de la ropa vintage?</h2>
+    <p style="color:var(--mute);margin:14px 0 0">Minifardos de polos americanos ya seleccionados: marcas buenas, sin manchas, listos para revender. Ideal para arrancar tu propia tienda.</p>
+    <div class="offer">
+      <div><small>Bolivia</small><b>12 prendas · 330 Bs</b><small>Envíos a todo el país</small></div>
+      <div><small>Argentina</small><b>12 prendas · $60.000</b><small>Envíos a todo el país</small></div>
+    </div>
+    <a class="btn red" href="https://www.instagram.com/archive.sc0/">Pedir mi minifardo</a>
+  </div>
+</div></section>
+
+<section class="band" id="envios" style="padding-top:0"><div class="wrap">
+  <div class="head"><div><h2>De la feria a tu puerta</h2><p>Recorremos las ferias grandes para que tú no tengas que hacerlo.</p></div></div>
+  <div class="feria">
+    <article><div class="city">El Alto</div><h3>Feria 16 de Julio</h3><p>Jueves y domingos entre miles de puestos, buscando jeans, chaquetas y marcas de los 90 y 2000.</p></article>
+    <article><div class="city">Oruro</div><h3>Feria Kantuta</h3><p>Fardos recién abiertos, de donde salen muchos de los polos y camisas.</p></article>
+    <article><div class="city">Santa Cruz</div><h3>Nuestra base</h3><p>Aquí lavamos, revisamos, medimos y fotografiamos cada prenda antes del drop.</p></article>
+  </div>
+  <div class="ship">
+    <div><h3>Bolivia</h3><p>Envíos a los 9 departamentos. Santa Cruz, La Paz, Cochabamba y Oruro llegan en 1 a 3 días.</p></div>
+    <div><h3>Argentina</h3><p>Envíos a todo el país, de Córdoba a Tierra del Fuego. Precios en pesos al confirmar.</p></div>
+  </div>
+  <div style="margin-top:36px">
+    <details><summary>¿La ropa es original?</summary><p>Sí. Es ropa americana de segunda mano. Mostramos la etiqueta de cada prenda en las fotos para que veas marca, talla y origen.</p></details>
+    <details><summary>¿Cómo sé si me queda?</summary><p>Cada prenda trae talla de etiqueta y medidas tomadas en plano (ancho y largo). Si dudas, escríbenos y te mandamos más fotos.</p></details>
+    <details><summary>¿Hacen cambios?</summary><p>Como cada pieza es única no hacemos cambios por talla, pero si la prenda llega con un detalle que no mostramos, te devolvemos el dinero.</p></details>
+    <details><summary>¿Cuánto tiempo me guardan una reserva?</summary><p>24 horas. Después, la prenda vuelve a quedar disponible para el siguiente en la lista.</p></details>
+  </div>
+</div></section>
+
+<section class="band close"><div class="wrap">
+  <h2>Drops todos<br>los domingos</h2>
+  <a class="btn" href="https://www.tiktok.com/@archive.sc">Comenta “Grupo” en TikTok</a>
+</div></section>
+
+<footer class="band" style="padding-block:28px"><div class="wrap">
+  <div><b>ARCHIVE SC · Tienda de Ropa</b><br>Santa Cruz, Bolivia. Envíos a todo Bolivia y Argentina.</div>
+  <div>TikTok <a href="https://www.tiktok.com/@archive.sc"><b>@archive.sc</b></a><br>Instagram <a href="https://www.instagram.com/archive.sc0/"><b>@archive.sc0</b></a></div>
+</div></footer>
+
+<div class="ov" id="ov" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Mi reserva"></aside>
+
+<script>
+{
+const RATE=182; // 330 Bs = 60.000 ARS, según su propia oferta de fardos
+const P=[
+ {id:'fubu',cat:'Chaquetas',brand:'FUBU The Collection',name:'Varsity satinada 05 amarilla y azul',size:'L',bs:650,st:'sold',img:['fubu-front','fubu-back','fubu-tag'],d:{Material:'100% nylon, relleno poliéster',Origen:'Hecha en Corea',Estado:'Muy bueno, brillo original'}},
+ {id:'levis',cat:'Jeans',brand:"Levi's 559",name:'Relaxed Straight lavado medio',size:'W33 L30',bs:220,st:'ok',img:['jeans-front','jeans-back','jeans-tag'],d:{Material:'100% algodón',Origen:'Hecho en México',Corte:'Relaxed straight, tiro medio'}},
+ {id:'rl-tees',cat:'Polos',brand:'Polo Ralph Lauren',name:'Poleras Classic y Custom Slim (4)',size:'M · L',bs:140,st:'ok',img:['polo-tees'],d:{Incluye:'Universite, gris, rayas marino, marino',Precio:'Por unidad',Estado:'Excelente'}},
+ {id:'bb-polos',cat:'Polos',brand:'Brooks Brothers',name:'Polos piqué Golden Fleece (9 colores)',size:'M a XXL',bs:130,st:'ok',img:['brooks-polos'],d:{Colores:'Blanco, negro, azul, gris, rojo, verde, rayas',Precio:'Por unidad',Estado:'Muy bueno'}},
+ {id:'bb-shirts',cat:'Camisas',brand:'Brooks Brothers',name:'Camisas de vestir Madison y Regent',size:'15½ · 33',bs:180,st:'res',img:['brooks-shirts'],d:{Incluye:'Rayas celeste, cuadros, blanca, celeste',Precio:'Por unidad',Estado:'Excelente'}},
+ {id:'street',cat:'Streetwear',brand:'ASSC · Essentials · Vlone · CDG',name:'Lote streetwear y Polo RL',size:'S a XL',bs:160,st:'ok',img:['streetwear'],d:{Incluye:'Anti Social Social Club, Fear of God Essentials, Kaws, Vlone, CDG Play, RipNDip',Precio:'Desde, por unidad',Estado:'Muy bueno'}},
+ {id:'rl-spiral',cat:'Polos',brand:'Polo Ralph Lauren · Lacoste',name:'Drop 22/11: más de 30 polos',size:'S a XL',bs:150,st:'ok',img:['polo-spiral'],d:{Incluye:'Polo RL Custom Slim y Classic Fit, Lacoste, US Polo',Precio:'Desde, por unidad',Estado:'Muy bueno'}}
+];
+const ST={ok:['Disponible',''],res:['Reservado','res'],sold:['Vendido','sold']};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ars=bs=>'$'+(Math.round(bs*RATE/500)*500).toLocaleString('es-AR');
+let cat='Todo',bag=[];
+try{bag=JSON.parse(localStorage.getItem('asc-bag')||'[]').filter(id=>P.some(p=>p.id===id&&p.st==='ok'))}catch(e){}
+const save=()=>{try{localStorage.setItem('asc-bag',JSON.stringify(bag))}catch(e){};$('#bagN').textContent=bag.length};
+
+$('#tk').textContent=Array(2).fill('POLO RALPH LAUREN ✦ BROOKS BROTHERS ✦ FUBU ✦ LEVI\'S 559 ✦ CARHARTT ✦ NIKE ✦ TRUE RELIGION ✦ ESSENTIALS ✦ ').join('').repeat(2);
+
+const cats=['Todo',...new Set(P.map(p=>p.cat))];
+function chips(){$('#chips').innerHTML=cats.map(c=>`<button class="chip" type="button" aria-pressed="${c===cat}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}
+function grid(){
+  $('#grid').innerHTML=P.filter(p=>cat==='Todo'||p.cat===cat).map(p=>{
+    const [lab,cls]=bag.includes(p.id)?['En tu reserva','res']:ST[p.st];
+    return `<article class="card" tabindex="0" data-id="${p.id}">
+      <div class="ph"><img src="img/${p.img[0]}.webp" alt="${esc(p.brand+' '+p.name)}" loading="lazy"><span class="tag ${cls}">${lab}</span>${p.st==='sold'?'<span class="stamp">Joyita vendida</span>':''}</div>
+      <div class="inf"><span class="br">${esc(p.brand)}</span><h3>${esc(p.name)}</h3><span class="ars">Talla ${esc(p.size)}</span>
+      <div class="row"><span class="price">${p.bs} Bs</span><span class="ars">≈ ${ars(p.bs)} ARS</span></div></div></article>`}).join('');
+}
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;cat=b.dataset.c;chips();grid()});
+$('#grid').addEventListener('click',e=>{const c=e.target.closest('.card');if(c)open(c.dataset.id)});
+$('#grid').addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();open(c.dataset.id)}});
+
+const ov=$('#ov'),dr=$('#drawer');
+function close(){ov.hidden=true;dr.hidden=true;ov.innerHTML=''}
+ov.addEventListener('click',e=>{if(e.target===ov||e.target.closest('.x'))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+
+function open(id){
+  const p=P.find(x=>x.id===id);let i=0;
+  const inBag=bag.includes(p.id);
+  const action=p.st==='sold'?'<button class="btn ghost" disabled>Ya se vendió</button>':p.st==='res'?'<button class="btn ghost" id="wait" type="button">Avisarme si se libera</button>':inBag?'<button class="btn ghost" id="rm" type="button">Quitar de mi reserva</button>':'<button class="btn red" id="add" type="button">Reservar esta prenda</button>';
+  ov.innerHTML=`<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(p.name)}">
+    <div class="gal"><div class="main"><img id="mimg" src="img/${p.img[0]}.webp" alt="${esc(p.name)}"></div>
+    ${p.img.length>1?`<div class="thumbs">${p.img.map((m,k)=>`<button type="button" data-k="${k}" aria-current="${k===0}" aria-label="Foto ${k+1}"><img src="img/${m}.webp" alt=""></button>`).join('')}</div>`:''}</div>
+    <div class="md"><button class="x" type="button" aria-label="Cerrar">×</button>
+      <span class="br" style="color:var(--mute);font-weight:600;font-size:14px">${esc(p.brand)} · ${ST[p.st][0]}</span>
+      <h3>${esc(p.name)}</h3>
+      <div><span class="price" style="font-size:36px">${p.bs} Bs</span> <span class="ars">≈ ${ars(p.bs)} ARS</span></div>
+      <dl><dt>Talla</dt><dd>${esc(p.size)}</dd>${Object.entries(p.d).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+      ${action}<p id="fb" style="margin:0;font-size:14px;color:var(--mute)"></p>
+    </div></div>`;
+  ov.hidden=false;dr.hidden=true;
+  ov.querySelectorAll('.thumbs button').forEach(b=>b.onclick=()=>{i=+b.dataset.k;$('#mimg').src=`img/${p.img[i]}.webp`;ov.querySelectorAll('.thumbs button').forEach(t=>t.setAttribute('aria-current',t===b))});
+  const add=$('#add'),rm=$('#rm'),w=$('#wait');
+  if(add)add.onclick=()=>{bag.push(p.id);save();grid();showBag()};
+  if(rm)rm.onclick=()=>{bag=bag.filter(x=>x!==p.id);save();grid();close()};
+  if(w)w.onclick=()=>{$('#fb').textContent='Listo: si la reserva vence, te avisamos por mensaje.';w.disabled=true};
+}
+
+function showBag(){
+  ov.innerHTML='';ov.hidden=false;dr.hidden=false;
+  const items=bag.map(id=>P.find(p=>p.id===id));
+  const tot=items.reduce((a,p)=>a+p.bs,0);
+  const msg=`Hola Archive SC, quiero reservar:\n${items.map(p=>`• ${p.brand}, ${p.name} (${p.size}): ${p.bs} Bs`).join('\n')}\nTotal: ${tot} Bs`;
+  dr.innerHTML=`<div style="display:flex;align-items:center"><h3>Mi reserva</h3><button class="x" type="button" id="dx" aria-label="Cerrar">×</button></div>
+  ${items.length?items.map(p=>`<div class="li"><img src="img/${p.img[0]}.webp" alt=""><div><b style="font-size:14px">${esc(p.brand)}</b><br><span class="ars">${esc(p.name)} · ${p.bs} Bs</span></div><button type="button" data-rm="${p.id}">Quitar</button></div>`).join('')
+  +`<div class="sum"><span>Total</span><span>${tot} Bs <span class="ars">≈ ${ars(tot)}</span></span></div>
+  <div class="msg">${esc(msg)}</div>
+  <button class="btn red" type="button" id="cp">Copiar mensaje</button>
+  <p style="margin:10px 0 0;font-size:14px;color:var(--mute)">Pégalo en un mensaje a <b>@archive.sc0</b> en Instagram o a TikTok. Te guardamos las prendas 24 horas.</p>
+  <a class="btn ghost" style="margin-top:12px" href="https://www.instagram.com/archive.sc0/">Abrir Instagram</a>`
+  :'<p class="empty">Todavía no reservaste nada. Elige una prenda disponible del drop.</p>'}`;
+  $('#dx').onclick=close;
+  dr.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{bag=bag.filter(x=>x!==b.dataset.rm);save();grid();showBag()});
+  const cp=$('#cp');if(cp)cp.onclick=async()=>{try{await navigator.clipboard.writeText(msg);cp.textContent='Mensaje copiado'}catch(e){cp.textContent='Selecciona y copia el texto'}};
+}
+$('#bagBtn').onclick=showBag;
+
+// próximo domingo 20:00 hora Bolivia (UTC-4)
+function next(){const n=new Date();const b=new Date(n.getTime()-4*3600e3);let t=Date.UTC(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate()+((7-b.getUTCDay())%7),24);if(t<=n.getTime())t+=7*864e5;return t}
+const target=next();
+$('#dropDate').textContent=new Date(target).toLocaleDateString('es-BO',{weekday:'long',day:'numeric',month:'long',timeZone:'America/La_Paz'})+', 20:00 (hora Bolivia)';
+const pad=n=>String(n).padStart(2,'0');
+function tick(){let s=Math.max(0,Math.floor((target-Date.now())/1000));$('#cd-d').textContent=Math.floor(s/86400);$('#cd-h').textContent=pad(Math.floor(s/3600)%24);$('#cd-m').textContent=pad(Math.floor(s/60)%60);$('#cd-s').textContent=pad(s%60)}
+tick();setInterval(tick,1000);
+chips();grid();save();
+}
+</script>
