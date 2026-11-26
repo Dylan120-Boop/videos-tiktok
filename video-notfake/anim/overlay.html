@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@1,900&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="common.js"></script></head><body>
+<!-- Gancho -->
+<div id="hb" class="abs" style="top:0;left:0;right:0;height:640px;background:linear-gradient(rgba(0,0,0,.92) 70%,transparent)"></div>
+<div class="abs" style="top:200px;left:60px;right:60px;text-align:center"><div class="anton" style="font-size:96px">
+ <div id="h0">¿La tienda más</div><div id="h1"><span style="color:#e62a2f;display:inline-block" id="hx">exclusiva</span> de Santa</div><div id="h2">Cruz?</div></div></div>
+<!-- Sello -->
+<div class="abs" style="top:560px;left:0;right:0;text-align:center"><div id="stamp" class="anton" style="display:inline-block;font-size:150px;color:#e62a2f;border:14px solid #e62a2f;padding:20px 40px;background:rgba(255,255,255,.94)">Sin página<br>web</div></div>
+<!-- Paso 3 -->
+<div class="abs" style="top:330px;left:0;right:0;text-align:center"><div id="p3" class="kick" style="display:inline-block;background:#e62a2f;color:#fff;padding:14px 26px;letter-spacing:.12em">PASO 3 · EL RESULTADO</div></div>
+<!-- Altura -->
+<div class="abs" style="top:300px;left:60px;right:60px;text-align:center"><div class="anton" style="font-size:110px;text-shadow:0 6px 0 #000">
+ <div id="a0">Una página</div><div id="a1">a su <span style="color:#e62a2f">altura</span></div></div></div>
+<!-- Subtítulos -->
+<div class="abs" style="top:1330px;left:40px;right:40px;text-align:center"><div id="cap" class="anton" style="display:inline-block;background:rgba(0,0,0,.8);padding:14px 26px 18px;border-radius:18px"></div></div>
+<script>
+const CAPS=[{"s": 0,"e": 1.28,"t": "Cuando conocí Not Fake"},{"s": 1.28,"e": 2.73,"t": "me pareció de las tiendas"},{"s": 2.73,"e": 4.89,"t": "más *exclusivas* de Santa Cruz"},{"s": 4.89,"e": 6.35,"t": "Jordan, Nike SB"},{"s": 6.35,"e": 7.72,"t": "Supreme, Asics"},{"s": 7.72,"e": 9.23,"t": "Fear of God"},{"s": 9.23,"e": 10.61,"t": "todo *original*"},{"s": 10.61,"e": 11.52,"t": "Pero una tienda"},{"s": 11.52,"e": 12.97,"t": "así de *exclusiva*"},{"s": 12.97,"e": 14.29,"t": "¿y sin página web?"},{"s": 14.29,"e": 15.18,"t": "*Nada que ver*"},{"s": 15.18,"e": 16.84,"t": "Así que le hice una"},{"s": 16.84,"e": 18.32,"t": "Primero estudié la marca"},{"s": 18.32,"e": 19.67,"t": "el *negro* de sus redes"},{"s": 19.67,"e": 20.99,"t": "el *rojo* del logo"},{"s": 20.99,"e": 22.86,"t": "la letra gruesa de sus memes"},{"s": 22.86,"e": 24.32,"t": "y esa *onda callejera*"},{"s": 24.32,"e": 25.29,"t": "con humor"},{"s": 25.29,"e": 26.57,"t": "Después agarré la estructura"},{"s": 26.57,"e": 27.48,"t": "de una tienda grande"},{"s": 27.48,"e": 28.45,"t": "de streetwear"},{"s": 28.45,"e": 29.48,"t": "barra de anuncios"},{"s": 29.48,"e": 30.27,"t": "fotos grandes"},{"s": 30.27,"e": 31.43,"t": "productos en grilla"},{"s": 31.43,"e": 32.59,"t": "y fondo blanco"},{"s": 32.59,"e": 33.56,"t": "Y quedó así"},{"s": 33.56,"e": 35.45,"t": "Portada con la pared de tenis"},{"s": 35.45,"e": 36.69,"t": "los drops con talla"},{"s": 36.69,"e": 37.61,"t": "*Black Friday*"},{"s": 37.61,"e": 38.45,"t": "hasta 40% off"},{"s": 38.45,"e": 39.43,"t": "y cada producto"},{"s": 39.43,"e": 41.33,"t": "te lleva directo al *DM*"},{"s": 41.33,"e": 42.2,"t": "*Ahora sí*"},{"s": 42.2,"e": 43.4,"t": "una tienda exclusiva"},{"s": 43.4,"e": 45.28,"t": "con una página a su altura"},{"s": 45.28,"e": 46.36,"t": "Not Fake Bolivia"},{"s": 46.36,"e": 47.5,"t": "Si no es original"},{"s": 47.5,"e": 48.46,"t": "*no entra*"},{"s": 48.46,"e": 50.49,"t": "Pasá por Torres Platinum"},{"s": 50.49,"e": 51.42,"t": "o escribí a"},{"s": 51.42,"e": 52.6,"t": "*@notfake_bol*"}];
+let cur=-1;
+function draw(t){
+ // gancho
+ const hv=t<4.47?1:Math.max(0,1-(t-4.47)/.25);
+ $('hb').style.opacity=hv;
+ [0.05,0.3,0.55].forEach((a,i)=>{const x=pr(t,a,.35);set($('h'+i),Math.min(x?1:0,hv),`translateY(${-60*(1-eo(x))}px) scale(${.8+.2*bk(x)})`)});
+ $('hx').style.transform=`scale(${1+.08*Math.max(0,Math.sin((t-1)*6))*(t>1&&t<4?1:0)})`;
+ // sello
+ const sx=pr(t,12.97,.25);const sv=t>14.29?Math.max(0,1-(t-14.29)/.15):1;
+ const sh=t>13.2&&t<13.45?Math.sin(t*120)*10:0;
+ set($('stamp'),(sx?1:0)*sv,`translateX(${sh}px) rotate(${-8+10*(1-eo(sx))}deg) scale(${3-2*eo(sx)})`);
+ // paso 3
+ const px=pr(t,32.6,.35),pv=t>35.6?Math.max(0,1-(t-35.6)/.2):1;
+ set($('p3'),(px?1:0)*pv,`translateX(${-700*(1-eo(px))}px)`);
+ // altura
+ const av=t>44.9?Math.max(0,1-(t-44.9)/.2):1;
+ [41.3,41.55].forEach((a,i)=>{const x=pr(t,a,.35);set($('a'+i),(x?1:0)*av,`translateY(${80*(1-eo(x))}px)`)});
+ // subtítulos
+ const i=CAPS.findIndex(c=>t>=c.s&&t<c.e);const c=$('cap');
+ if(i<0){c.style.opacity=0;return}
+ const C=CAPS[i];
+ if(i!==cur){cur=i;c.innerHTML=C.t.replace(/\*(.+?)\*/g,'<span class="y">$1</span>');c.style.fontSize=(C.t.length>24?72:C.t.length>16?84:100)+'px'}
+ const x=pr(t,C.s,.18),out=pr(t,C.e-.08,.08);
+ set(c,(1-out),`scale(${(.55+.45*bk(x))*(1-.1*out)}) translateY(${20*(1-eo(x))}px)`);
+}
+</script></body></html>

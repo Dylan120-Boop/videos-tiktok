@@ -1,0 +1,9 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+body{font-family:"DM Sans",sans-serif;color:#fff}
+.abs{position:absolute}
+.anton{font-family:Anton,Impact,sans-serif;text-transform:uppercase;line-height:.92}
+.logo{font-family:Archivo,sans-serif;font-weight:900;font-style:italic;line-height:.8;letter-spacing:-.03em;display:inline-flex;flex-direction:column}
+.logo .n{color:#e62a2f;position:relative}.logo .n sup{font-size:.3em;position:absolute;top:.05em;right:-.6em;font-style:normal;color:#fff}.logo .f{color:#fff;font-size:.9em;margin-left:.1em}
+.kick{font:700 34px "DM Sans";letter-spacing:.14em;color:#e62a2f}
+.y{color:#f6d23a}
